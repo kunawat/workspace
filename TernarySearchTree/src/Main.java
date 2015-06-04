@@ -7,7 +7,7 @@ public class Main {
 		s.insert(s.root, "bug");
 		s.insert(s.root, "cats");
 		char[] buf= new char[5];
-		System.out.println(s.root.equal.c);
+		
 		s.traverse(s.root, buf, 0);
 		if(s.search(s.root, "cup"))System.out.println("Found");
 		else System.out.println("Not Found");
@@ -28,27 +28,27 @@ public class Main {
 	}
 	public static class TST{
 		node root=null;
-		public void insert(node root, String word){
-			if(root==null){
-				root=new node(word.charAt(0));
+		public node insert(node n, String word){
+			if(n==null){
+				n=new node(word.charAt(0));
+				if(root==null)root=n;
 			}
 			
-			if(root.c>word.charAt(0)){
-				insert(root.left,word);
+			if(n.c>word.charAt(0)){
+				n.left=insert(n.left,word);
 			}
-			else if(root.c<word.charAt(0)){
-				insert(root.right,word);
+			else if(n.c<word.charAt(0)){
+				n.right=insert(n.right,word);
 			}
 			else{
 				if(word.length()==1){
-					root.isEnd=true;
+					n.isEnd=true;
 				}
 				else{
-					//System.out.println(word.substring(1));
-					insert(root.equal,word.substring(1));
+					n.equal=insert(n.equal,word.substring(1));
 				}
 			}
-			
+			return n;
 		}
 		public void traverse(node root, char[] buf, int depth){
 			if(root!=null){
