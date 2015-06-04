@@ -1,0 +1,21 @@
+import java.util.*;
+public class Main {
+	public static void main(String args[]){
+		
+	}
+	public static class node{
+		char c;
+		boolean isEnd=false;
+		node left, right, equal=null;
+		public void node(char c){
+			this.c=c;
+		}
+	}
+	public static class TST{
+		public void insert(node root, char[] word){
+			if(root==null){
+				root=new node(word[0]);
+			}
+		}
+	}
+}

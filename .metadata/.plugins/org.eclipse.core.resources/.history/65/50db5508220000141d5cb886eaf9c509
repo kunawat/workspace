@@ -1,0 +1,107 @@
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]) throws Exception{
+		Scanner s = new Scanner (System.in);
+		try{
+		int t = s.nextInt();
+		while(t>0){
+			int  n= s.nextInt();
+			char A[]=new char[n];
+			char B[]= new char[n];
+			String S;
+			for(int i=0;i<n;i++){
+				S=s.next();
+				System.out.println(S);
+				A[i]=S.charAt(0);
+				S=s.next();
+				System.out.println(S);
+
+				B[i]=S.charAt(0);
+			}
+			list C =new list();
+			 S =s.next();
+			for(int j=S.length()-1;j>=0;j--){
+				C.insert(S.charAt(j));
+			}
+		
+			node x;
+			for(int j=0;j<n;j++){
+				 x=C.head;
+				while(x!=null){
+					if(x.key==A[j] && !x.virginity){
+						x.key=B[j];
+						x.virginity=true;
+						
+					}
+					x=x.next;
+				}
+			}
+
+			while(C.head.key=='0'){
+				C.head=C.head.next;
+			}
+			x=C.head;
+			
+			while(x!=null){
+				if(x.key=='.'){
+					while(C.tail.key=='0' ){
+						C.tail=C.tail.prev;
+					}
+					break;
+				}
+				x=x.next;
+			}
+			if(C.tail.key=='.')	C.tail=C.tail.prev;
+			C.tail.next=null;
+			x=C.head;
+			
+			while(x!=null){
+				System.out.print(x.key);
+				x=x.next;
+			}
+			if(t>1)
+			System.out.println();
+			t--;
+		}
+		}
+		catch(Exception e){}
+	}
+	
+public static class list {
+	 node head=null;
+	 node tail=null;
+	public void insert(char x){
+		if(head==null){
+			
+			head =new node(x);
+			tail=head;
+		}
+		else{
+			node n = new node(x);
+			n.next=head;
+			head.prev=n;
+			head=n;
+		}
+	}
+
+
+	
+}
+
+public static class node {
+	node next=null;
+	char key;
+	boolean virginity=false;
+	node prev=null;
+	public node(char key) {
+		super();
+		this.key = key;
+		
+	}
+}
+
+
+
+}

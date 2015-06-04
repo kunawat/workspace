@@ -1,0 +1,79 @@
+import java.util.*;
+public class Main {
+	public static void main(String args[])throws Exception{
+	try{
+		Scanner s = new Scanner(System.in);
+		
+		long n =s.nextLong();
+		int m=s.nextInt();
+		int k=s.nextInt();
+		if(k==0){
+			long ans=1;
+			for(long i=0;i<n;i++){
+				ans=(ans*m)%1000000007;
+			}
+			System.out.println(ans);
+		}
+		else{
+		long[][] a = new long[k][4];
+		for(int i=0;i<k;i++){
+			a[i][0]=s.nextLong();
+			a[i][1]=s.nextLong();
+			a[i][2]=s.nextLong();
+			a[i][3]=s.nextLong();
+		}
+		Arrays.sort(a, new Comparator<long[]>(){
+			public int compare(long[] o,long[] p){
+				return Long.compare(o[0], p[0]);
+			}
+		});
+		Map<Long,Map<Integer, Long>> q = new HashMap<Long,Map<Integer,Long>>();
+		for(long i=0;i<n+2;i++){
+			Map<Integer,Long> x = new HashMap<Integer,Long>();
+			q.put(i,x);
+		}
+		
+		q.get((long)0).put(m,(long)1);
+		int c=0;
+		long mod=1000000007;
+		while(a[c][0]==(long)0){
+			long temp=0;
+			if(q.get(a[c][2]).containsKey((int)a[c][3])){
+			 temp=q.get(a[c][2]).get((int)a[c][3]);
+			}
+			q.get(a[c][2]).put((int)a[c][3],(temp+1)%mod);
+			c++;
+		}
+		//System.out.println(q.get((long)0).get(m));
+		for(long i=1;i<n+1;i++){
+			long temp;
+			//if(i<n+1)
+			 temp=((q.get(i-1).get(m)*(long)m)%mod);
+			//else  temp=((q.get(i-1).get(m)*(long)1)%mod);
+			Iterator it =q.get(i).entrySet().iterator();
+			while(it.hasNext()){
+				 Map.Entry<Integer, Long> pairs = (Map.Entry)it.next();
+				temp = (temp + pairs.getValue())%mod;
+			}
+			
+			q.get(i).put(m,temp);
+			while(c<k && a[c][0]==i){
+				long temp1=0;
+				if(q.get(a[c][2]).containsKey((int)a[c][3])){
+				 temp1=q.get(a[c][2]).get((int)a[c][3])%mod;
+				}
+				if(q.get(a[c][0]).containsKey((int)a[c][1])){
+					temp1=(temp1+q.get(a[c][0]).get((int)a[c][1]))%mod;
+				}
+				temp1=(temp1+(q.get(i-1).get(m)))%mod;
+				q.get(a[c][2]).put((int)a[c][3],temp1);
+				c++;
+			}
+			//System.out.println(q.get(i).get(m));
+		}
+		System.out.println((q.get(n).get(m)));
+		}
+	}
+	catch(Exception e){}
+	}	
+} 

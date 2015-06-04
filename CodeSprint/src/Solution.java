@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+	        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+		 Scanner s = new Scanner(System.in);
+		
+		 int a = s.nextInt();
+		 int b = s.nextInt();
+	
+		char[][] x = new char[b][a];
+		for(int i=0;i<b;i++){
+			
+			x[i]=s.next().toCharArray();
+			
+		}
+		int p=0,q=0;
+		for(int i=0;i<b;i++){
+			for(int j =0;j<a;j++){
+				if(x[i][j]=='@'){
+					p=i;
+					q=j;
+					break;
+					
+				}
+			}
+		}
+		 int ans=fun(a,b,q,p,x);
+		 System.out.println(ans+1);
+    }	
+    public static int fun(int a, int b, int r, int p, char[][] x){
+    	x[p][r]='#';
+    	int w=0,e=0,c=0,d=0;
+    	if(p+1<b && x[p+1][r]=='.')  w=fun(a,b,r, p+1, x)+1;
+    	if(p-1>=0 && x[p-1][r]=='.')  e=fun(a,b,r, p-1, x)+1;
+    	if(r+1<a && x[p][r+1]=='.')  c=fun(a,b,r+1, p, x)+1;
+    	if(r-1>=0 && x[p][r-1]=='.')  d=fun(a,b,r-1, p, x)+1;
+    	return w+e+c+d;
+    }
+}

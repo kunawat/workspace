@@ -1,0 +1,31 @@
+import java.util.*;
+public class Main {
+	public static void main(String args[])throws Exception{
+	try{
+		Scanner s = new Scanner(System.in);
+		int t = s.nextInt();
+		
+		while(t>0){
+			int n=s.nextInt();
+			long m= s.nextLong();
+			long temp =(n*(n+1))/2;
+			temp=Math.abs(temp-m);
+			int ans=0;
+			if(n>1){
+			if(temp%(n-1)==0){
+				ans=(int)(temp/(n-1));
+			}
+			else{
+				ans=(int)(temp/(n-1));
+				ans++;
+			}
+			}
+			else ans=(int) Math.abs(m-1);
+			System.out.println(ans);
+			t--;
+		}
+	
+	}
+	catch(Exception e){}
+	}	
+} 

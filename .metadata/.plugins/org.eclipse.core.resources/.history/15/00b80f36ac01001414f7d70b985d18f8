@@ -1,0 +1,20 @@
+import java.util.Scanner;
+public class Main{
+	public static void main(String[] args) throws Exception{
+		Scanner s =new Scanner(System.in);
+		try{
+		int t= s.nextInt();
+		while(t>0){
+			int n = s.nextInt();
+			System.out.println(func(n)%1000000007);
+			t--;
+		}
+		}
+		catch(Exception e){}
+	}
+	public static long func(int n){
+		if(n==1) return 1;
+		else if(n==2) return 3;
+		else return ((func(n-1)+func(n-2))*2)%1000000007;
+	}
+} 

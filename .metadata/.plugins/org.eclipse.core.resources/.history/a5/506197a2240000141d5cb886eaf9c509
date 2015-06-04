@@ -1,0 +1,62 @@
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]) throws Exception{
+		Scanner s = new Scanner (System.in);
+		try{
+		int t = s.nextInt();
+		while(t>0){
+			int a = s.nextInt();
+			
+			int b= s.nextInt();
+			a=findNext(a);
+			int ans=0;
+			for(int i=a;i<=b;){
+				System.out.println(i);
+				if(iSquare(i)==1)ans++;
+				i=findNext(i+1);
+			}
+			System.out.println(ans);
+			t--;
+			}
+		}
+		
+		catch(Exception e){}
+	}
+	
+	public static int iSquare(int n){
+		if(n==((int)Math.sqrt(n)*(int)Math.sqrt(n))) return 1;
+		else return 0;
+	}
+
+	public static int findNext(int a){
+		int digits=1;
+		int x=a;
+		while(x/10>0){
+			digits++;
+			x=x/10;
+		}
+		int place =1;
+		x=a;
+		for(int i=1;i<=digits;i++){
+			int k=x%10;
+			if(k>=2 && k<4){
+				a=a+(4-k)*place;
+			}
+			else if(k>4 && k<9){
+				a=a+(9-k)*place;
+			}
+			place=place*10;
+			x=x/10;
+		}
+		return a;
+
+	}
+
+
+
+
+
+
+}

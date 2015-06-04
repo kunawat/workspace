@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+	        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+		 Scanner s = new Scanner(System.in);
+		 int a = s.nextInt();
+		 int b = s.nextInt();
+		int x = s.nextInt();
+		BigInteger result = nCr(a,4);
+		result=result.multiply(nCr(b,1));
+		result=result.multiply(nCr(a+b-5,x-5));
+		System.out.println(result);
+	
+	}
+    public static BigInteger factorial(int num) {
+        if(num == 0)  return BigInteger.ONE;
+        else        return factorial(num - 1).multiply(BigInteger.valueOf(num));
+    }
+
+    public static BigInteger nCr(int n, int r){
+        return factorial(n).divide(factorial(n-r).multiply(factorial(r)));
+    }
+}

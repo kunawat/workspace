@@ -1,0 +1,27 @@
+import java.util.*;
+public class Main {
+	public static void main(String args[])throws Exception{
+	try{
+		Scanner s = new Scanner(System.in);
+		int t = s.nextInt();
+		s.nextLine();
+		while(t>0){
+			char[] c = s.nextLine().toCharArray();
+			int n= c.length;
+			int odd=0;
+			int even=0;
+			for(int i=0;i<n;i++){
+				if(i%2==0 && c[i]=='+')even++;
+				else if(i%2==1 && c[i]=='-')odd++;
+				
+			}
+			int ans=odd+even;
+			ans= Math.min(ans,n-ans);
+			System.out.println(ans);
+			t--;
+		}
+	
+	}
+	catch(Exception e){}
+	}	
+} 

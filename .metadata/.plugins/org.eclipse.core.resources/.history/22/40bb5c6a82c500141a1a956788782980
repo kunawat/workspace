@@ -1,0 +1,70 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+	        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+		 Scanner s = new Scanner(System.in);
+		 
+		int n= s.nextInt();
+		int t= s.nextInt();
+		int[] A = new int[n+1];
+		for(int i=1;i<=n;i++){
+			A[i]=s.nextInt();
+		}
+		int m[][] = new int[n+1][n+1];
+		int x[][] = new int[n+1][n+1];
+		for(int l=2;l<=n;l++){
+			for(int i=1;i<=n-l+1;i++){
+				int j=i+l-1;
+				m[i][j]=Integer.MAX_VALUE;
+				for(int k=i;k<=j-1;k++){
+					int w1=0;
+					for(int w=i;w<=k;w++){
+						w1=w1+A[w];
+					}
+					int w2=0;
+					for(int w=k+1;w<=j;w++){
+						w2=w2+A[w];
+					}
+					int q=m[i][k]+m[k+1][j]+(k-i+1)*w1+(j-k)*w2;
+					if(q<m[i][j]){
+						m[i][j]=q;
+						x[i][j]=k;
+					}
+				}
+			}
+		}
+		System.out.println(m[1][n]);
+		int c=0;
+		while(m[1][n]-((n-1)*c)+print(x,1,n,c,m)>t){
+			System.out.println("c="+c+" "+print(x,1,n,c,m));
+			c++;
+			
+		}
+		System.out.println(c);
+	 
+	 }
+	 public static int print(int[][] s,int i, int j, int c, int m[][]){
+		 
+	if(j>i){
+		 if(m[i][j]<c){
+			 System.out.println(s[i][j]);
+			 
+			 return (c-m[i][j]) +print(s,i,s[i][j],c,m)+print(s,s[i][j]+1,j,c,m);
+		 }
+		 else{System.out.println(s[i][j]);
+		 
+		 return print(s,i,s[i][j],c,m)+print(s,s[i][j]+1,j,c,m);}
+		 
+			 
+	}
+	else{	
+		return 0;
+	}
+	 }
+}

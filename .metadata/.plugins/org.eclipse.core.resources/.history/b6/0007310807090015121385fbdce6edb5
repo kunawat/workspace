@@ -1,0 +1,61 @@
+import java.util.*;
+public class Main {
+	public static void main(String args[]){
+		Scanner s = new Scanner(System.in);
+		int n =s.nextInt();
+		int[] items = new int[n];
+		int k =s.nextInt();
+		int[] top= new int[k];
+		int[] next = new int[n];
+		for(int i=0;i<k;i++){
+			top[i]=-1;
+		}
+		for(int i=0; i<n;i++){
+			next[i]=i+1;
+		}
+		int free=0;
+		stack ks =new stack();
+		 ks.push(item,15, 2);
+		    ks.push(45, 2);
+		 
+		    // Let us put some items in stack number 1
+		    ks.push(17, 1);
+		    ks.push(49, 1);
+		    ks.push(39, 1);
+		 
+		    // Let us put some items in stack number 0
+		    ks.push(11, 0);
+		    ks.push(9, 0);
+		    ks.push(7, 0);
+	}
+	public static class stack{
+		
+		public void push(int[] item,  int x, int k, int[] top, int[] next, int free){
+			
+			if(free==-1){
+				System.out.println("Overflow");
+				return;
+			}
+			int i=free;
+			free=next[i];
+			next[free]=top[k];
+			top[k]=free;
+			item[free]=x;
+		}
+		public int peek(int[] item, int k, int[] top){
+			if(top[k]==-1)return Integer.MIN_VALUE;
+			return item[top[k]];
+		}
+		public int pop(int[] item, int k, int[] top, int[] next, int free){
+			if(top[k]==-1){
+				System.out.println("Underflow");
+				return Integer.MIN_VALUE;
+			}
+			int i=top[k];
+			top[k]=next[i];
+			next[i]=free;
+			free=i;
+			return item[i];
+		}
+	}
+}

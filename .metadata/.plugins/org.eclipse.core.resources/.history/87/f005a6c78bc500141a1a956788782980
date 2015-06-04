@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+	        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+		 Scanner s = new Scanner(System.in);
+		 int a = s.nextInt();
+		 int b = s.nextInt();
+		int x = s.nextInt();
+		BigInteger q[] = new BigInteger[a+b+1];
+		q[0]=BigInteger.ONE;
+		for(int i=1;i<=a+b;i++){
+			q[i]=q[i-1].multiply(BigInteger.valueOf(i));
+		}
+		BigInteger result = q[a].divide(q[4].multiply(q[a-4]));
+		result=result.multiply(q[b].divide(q[1].multiply(q[b-1])));
+		result=result.multiply(q[a+b-5].divide(q[x-5].multiply(q[a+b-x])));
+		System.out.println(result);
+	
+	}
+  
+}

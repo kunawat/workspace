@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args)throws Exception{
+		Scanner s =new Scanner(System.in);
+		try{
+			int t= s.nextInt();
+			while(t>0){
+				int n=s.nextInt();
+				int[] A = new int[n];
+				for(int i=0; i<n;i++){
+					A[i]=s.nextInt();
+				}
+				double sum=0;
+				for(int i=0;i<n-2;i++){
+					for(int j=i+1;j<n-1;j++){
+						int x=2*A[j]-A[i];
+						for(int k=i+2;k<n;k++){
+							if(A[k]!=x){
+								sum=sum+Math.pow(2,n-k);
+							}
+						}
+					}
+				}
+				sum=sum%(1000000007);
+				System.out.println(int(sum));
+				t--;
+			}
+		}
+		catch(Exception e){}
+	}
+}

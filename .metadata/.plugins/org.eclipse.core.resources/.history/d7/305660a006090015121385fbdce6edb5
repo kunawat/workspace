@@ -1,0 +1,42 @@
+import java.util.*;
+public class Main {
+	public static void main(String args[]){
+		Scanner s = new Scanner(System.in);
+		int n =s.nextInt();
+		int[] items = new int[n];
+		int k =s.nextInt();
+		int[] top= new int[k];
+		int[] next = new int[n];
+		
+	}
+	public static class stack{
+		int top=-1;
+		public void push(int[] item, int k, int x, int[] top, int[] next, int free){
+			
+			if(free==-1){
+				System.out.println("Overflow");
+				return;
+			}
+			int i=free;
+			free=next[i];
+			next[free]=top[k];
+			top[k]=free;
+			item[free]=x;
+		}
+		public int peek(int[] item, int k, int[] top){
+			if(top[k]==-1)return Integer.MIN_VALUE;
+			return item[top[k]];
+		}
+		public int pop(int[] item, int k, int[] top, int[] next, int free){
+			if(top[k]==-1){
+				System.out.println("Underflow");
+				return Integer.MIN_VALUE;
+			}
+			int i=top[k];
+			top[k]=next[i];
+			next[i]=free;
+			free=i;
+			return item[i];
+		}
+	}
+}

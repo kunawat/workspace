@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+	        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+		 Scanner s = new Scanner(System.in);
+		 int t = s.nextInt();
+		 while(t>0){
+		 int a = s.nextInt();
+		 int b = s.nextInt();
+		 int a2=0, a3=0, a5=0, b2=0, b3=0,b5=0,br=0,ar =0;
+		 while(a%2==0){
+			 a=a/2;
+			 a2++;
+		 }
+		 while(a%3==0){
+			 a=a/3;
+			 a3++;
+		 }
+		 while(a%5==0){
+			 a=a/5;
+			 a5++;
+		 }
+		 while(b%2==0){
+			 b=b/2;
+			 b2++;
+		 }
+		 while(b%3==0){
+			 b=b/3;
+			 b3++;
+		 }
+		 while(b%5==0){
+			 b=b/5;
+			 b5++;
+		 }
+		 if(a==b){
+			 int ans = Math.abs(a2-b2)+Math.abs(a3-b3)+Math.abs(a5-b5);
+			 System.out.println(ans);
+		 }
+		 else System.out.println("-1");
+		 t--;
+		 }
+	
+    }	 
+}
